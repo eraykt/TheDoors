@@ -7,13 +7,13 @@ public class InventorySystem : Singleton<InventorySystem>
     protected override void Awake()
     {
         base.Awake();
-        
+
         inventory = new List<InventoryItem>();
     }
 
     public InventoryItem Get(InventoryItemData referenceData)
     {
-        var item = inventory.Find(value => value.Data == referenceData);
+        var item = inventory.Find(value => value.data == referenceData);
         return item;
     }
 
@@ -36,11 +36,11 @@ public class InventorySystem : Singleton<InventorySystem>
 public class InventoryItem
 {
     public string itemName;
-    public InventoryItemData Data { get; private set; }
+    public InventoryItemData data;
 
     public InventoryItem(InventoryItemData data)
     {
-        Data = data;
+        this.data = data;
         itemName = data.itemName;
     }
 }

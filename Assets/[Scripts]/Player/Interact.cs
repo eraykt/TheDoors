@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,7 +7,7 @@ public class Interact : MonoBehaviour
     private Ray ray;
     private RaycastHit hit;
 
-    public float interactDistance = 2f;
+    public float interactDistance = 5f;
 
     public Transform targetedObject;
 
@@ -18,12 +17,13 @@ public class Interact : MonoBehaviour
     {
         cam = Camera.main;
         input = new InputMaster();
+
+        input.Interaction.Interact.performed += _ => InteractWithCollectable();
     }
 
     private void Update()
     {
         InteractWithInteractable();
-        InteractWithCollectable();
     }
 
     private void InteractWithInteractable()
@@ -45,7 +45,6 @@ public class Interact : MonoBehaviour
     private void InteractWithCollectable()
     {
         if (!targetedObject.TryGetComponent<ICollectable>(out var collectable)) return;
-        if (!input.Interaction.Interact.triggered) return;
 
         collectable.Collect();
 
