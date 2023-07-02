@@ -4,6 +4,20 @@ public class ItemObject : MonoBehaviour, IInteractable, ICollectable
 {
     public InventoryItemData data;
 
+    private ItemOutline outline;
+    private ItemCanvas canvas;
+
+    private void Awake()
+    {
+        outline = GetComponent<ItemOutline>();
+        canvas = GetComponent<ItemCanvas>();
+    }
+
+    private void Start()
+    {
+        SetItemName();
+    }
+
     public void Collect()
     {
         InventorySystem.Instance.Add(data);
@@ -12,7 +26,18 @@ public class ItemObject : MonoBehaviour, IInteractable, ICollectable
 
     public void Interaction()
     {
-        // open item canvas
-        Debug.Log(data.itemName);
+        outline.SetOutline(true);
+        canvas.SetActiveCanvas(true);
+    }
+
+    public void DeInteraction()
+    {
+        outline.SetOutline(false);
+        canvas.SetActiveCanvas(false);
+    }
+
+    public void SetItemName()
+    {
+        canvas.SetItemName(data.itemName);
     }
 }

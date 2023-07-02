@@ -33,6 +33,13 @@ public class Interact : MonoBehaviour
         if (!Physics.Raycast(ray, out hit, interactDistance)) return;
         if (targetedObject == hit.transform) return;
 
+        if (targetedObject != null)
+        {
+            // we are looking at a new object and we need to de-interact with the old one
+            if (targetedObject.TryGetComponent<IInteractable>(out var oldInteractable))
+                oldInteractable.DeInteraction();
+        }
+
         targetedObject = hit.transform;
 
         if (targetedObject.TryGetComponent<IInteractable>(out var interactable))

@@ -1,17 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ItemCanvas : MonoBehaviour
 {
     [SerializeField] Canvas canvas;
-    [SerializeField] bool x;
-    private void Update() 
+
+    [SerializeField] private TextMeshProUGUI itemName;
+
+    private void Start()
     {
-        SetActiveCanvas(x);
+        SetActiveCanvas(false);
     }
+
     public void SetActiveCanvas(bool active)
     {
         canvas.gameObject.SetActive(active);
+    }
+
+    public void SetItemName(string item)
+    {
+        itemName.SetText(item);
     }
 }
