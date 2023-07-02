@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    public İnputMaster inputMaster;
+    public InputMaster inputMaster;
     void Awake()
     {
-        inputMaster = new İnputMaster();
+        inputMaster = new InputMaster();
     }
 
     // Update is called once per frame

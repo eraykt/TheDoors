@@ -15,10 +15,10 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public partial class @İnputMaster : IInputActionCollection2, IDisposable
+public partial class @InputMaster : IInputActionCollection2, IDisposable
 {
     public InputActionAsset asset { get; }
-    public @İnputMaster()
+    public @InputMaster()
     {
         asset = InputActionAsset.FromJson(@"{
     ""name"": ""inputMaster"",
@@ -281,8 +281,8 @@ public partial class @İnputMaster : IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement_Crouch;
     public struct MovementActions
     {
-        private @İnputMaster m_Wrapper;
-        public MovementActions(@İnputMaster wrapper) { m_Wrapper = wrapper; }
+        private @InputMaster m_Wrapper;
+        public MovementActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
         public InputAction @Forward => m_Wrapper.m_Movement_Forward;
         public InputAction @Right => m_Wrapper.m_Movement_Right;
         public InputAction @Jump => m_Wrapper.m_Movement_Jump;
@@ -336,8 +336,8 @@ public partial class @İnputMaster : IInputActionCollection2, IDisposable
     private readonly InputAction m_CameraLook_MouseY;
     public struct CameraLookActions
     {
-        private @İnputMaster m_Wrapper;
-        public CameraLookActions(@İnputMaster wrapper) { m_Wrapper = wrapper; }
+        private @InputMaster m_Wrapper;
+        public CameraLookActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
         public InputAction @MouseX => m_Wrapper.m_CameraLook_MouseX;
         public InputAction @MouseY => m_Wrapper.m_CameraLook_MouseY;
         public InputActionMap Get() { return m_Wrapper.m_CameraLook; }
