@@ -1,5 +1,5 @@
 {
-    "name": "inputMaster",
+    "name": "InputMaster",
     "maps": [
         {
             "name": "Movement",
@@ -176,6 +176,34 @@
                     "processors": "",
                     "groups": "",
                     "action": "MouseY",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Interaction",
+            "id": "f7036532-9855-4670-a480-97b84adee4df",
+            "actions": [
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "32cb9515-e988-471b-8a19-4abeb44b8813",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "838bfa49-4167-43c9-abcb-7688ad8085a0",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
