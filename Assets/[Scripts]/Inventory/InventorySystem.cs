@@ -3,6 +3,7 @@ using System.Collections.Generic;
 public class InventorySystem : Singleton<InventorySystem>
 {
     public List<InventoryItem> inventory;
+    public System.Action OnInventoryUpdated;
 
     protected override void Awake()
     {
@@ -21,6 +22,7 @@ public class InventorySystem : Singleton<InventorySystem>
     {
         var newItem = new InventoryItem(referenceData);
         inventory.Add(newItem);
+        OnInventoryUpdated?.Invoke();
     }
 
     public void Remove(InventoryItemData referenceData)
@@ -29,6 +31,8 @@ public class InventorySystem : Singleton<InventorySystem>
 
         if (item != null)
             inventory.Remove(item);
+
+        OnInventoryUpdated?.Invoke();
     }
 }
 

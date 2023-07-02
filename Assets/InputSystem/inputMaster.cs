@@ -230,6 +230,114 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Inventory"",
+            ""id"": ""8348a87f-9bd4-4ea1-a461-0fed00c98685"",
+            ""actions"": [
+                {
+                    ""name"": ""Inventory1"",
+                    ""type"": ""Button"",
+                    ""id"": ""a8ccadbe-1c4f-475a-ba15-d6161259939e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Inventory2"",
+                    ""type"": ""Button"",
+                    ""id"": ""209aa9b5-547a-4390-906d-2f8dbe3eb5ae"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Inventory3"",
+                    ""type"": ""Button"",
+                    ""id"": ""d3f549e8-dd1a-4466-9a6e-26ed00e3dc68"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Inventory4"",
+                    ""type"": ""Button"",
+                    ""id"": ""ca377483-368c-4bd2-8580-64dc9a734525"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Inventory5"",
+                    ""type"": ""Button"",
+                    ""id"": ""0c973c96-98d2-4514-9f4f-6acaf631e884"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""5f46e978-7d3d-4980-94d0-06ea80a22cce"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e33e419c-5b44-4f6f-8386-5f1ced9a0135"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e433bf61-7fe4-4289-8985-6812e129e46d"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f3486b5e-a6a2-4c9b-9cdf-45260a38460e"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""60e251b3-bb4c-4e8e-ad5c-6e4c1fbebaf8"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory5"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -247,6 +355,13 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         // Interaction
         m_Interaction = asset.FindActionMap("Interaction", throwIfNotFound: true);
         m_Interaction_Interact = m_Interaction.FindAction("Interact", throwIfNotFound: true);
+        // Inventory
+        m_Inventory = asset.FindActionMap("Inventory", throwIfNotFound: true);
+        m_Inventory_Inventory1 = m_Inventory.FindAction("Inventory1", throwIfNotFound: true);
+        m_Inventory_Inventory2 = m_Inventory.FindAction("Inventory2", throwIfNotFound: true);
+        m_Inventory_Inventory3 = m_Inventory.FindAction("Inventory3", throwIfNotFound: true);
+        m_Inventory_Inventory4 = m_Inventory.FindAction("Inventory4", throwIfNotFound: true);
+        m_Inventory_Inventory5 = m_Inventory.FindAction("Inventory5", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -433,6 +548,71 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         }
     }
     public InteractionActions @Interaction => new InteractionActions(this);
+
+    // Inventory
+    private readonly InputActionMap m_Inventory;
+    private IInventoryActions m_InventoryActionsCallbackInterface;
+    private readonly InputAction m_Inventory_Inventory1;
+    private readonly InputAction m_Inventory_Inventory2;
+    private readonly InputAction m_Inventory_Inventory3;
+    private readonly InputAction m_Inventory_Inventory4;
+    private readonly InputAction m_Inventory_Inventory5;
+    public struct InventoryActions
+    {
+        private @InputMaster m_Wrapper;
+        public InventoryActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Inventory1 => m_Wrapper.m_Inventory_Inventory1;
+        public InputAction @Inventory2 => m_Wrapper.m_Inventory_Inventory2;
+        public InputAction @Inventory3 => m_Wrapper.m_Inventory_Inventory3;
+        public InputAction @Inventory4 => m_Wrapper.m_Inventory_Inventory4;
+        public InputAction @Inventory5 => m_Wrapper.m_Inventory_Inventory5;
+        public InputActionMap Get() { return m_Wrapper.m_Inventory; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(InventoryActions set) { return set.Get(); }
+        public void SetCallbacks(IInventoryActions instance)
+        {
+            if (m_Wrapper.m_InventoryActionsCallbackInterface != null)
+            {
+                @Inventory1.started -= m_Wrapper.m_InventoryActionsCallbackInterface.OnInventory1;
+                @Inventory1.performed -= m_Wrapper.m_InventoryActionsCallbackInterface.OnInventory1;
+                @Inventory1.canceled -= m_Wrapper.m_InventoryActionsCallbackInterface.OnInventory1;
+                @Inventory2.started -= m_Wrapper.m_InventoryActionsCallbackInterface.OnInventory2;
+                @Inventory2.performed -= m_Wrapper.m_InventoryActionsCallbackInterface.OnInventory2;
+                @Inventory2.canceled -= m_Wrapper.m_InventoryActionsCallbackInterface.OnInventory2;
+                @Inventory3.started -= m_Wrapper.m_InventoryActionsCallbackInterface.OnInventory3;
+                @Inventory3.performed -= m_Wrapper.m_InventoryActionsCallbackInterface.OnInventory3;
+                @Inventory3.canceled -= m_Wrapper.m_InventoryActionsCallbackInterface.OnInventory3;
+                @Inventory4.started -= m_Wrapper.m_InventoryActionsCallbackInterface.OnInventory4;
+                @Inventory4.performed -= m_Wrapper.m_InventoryActionsCallbackInterface.OnInventory4;
+                @Inventory4.canceled -= m_Wrapper.m_InventoryActionsCallbackInterface.OnInventory4;
+                @Inventory5.started -= m_Wrapper.m_InventoryActionsCallbackInterface.OnInventory5;
+                @Inventory5.performed -= m_Wrapper.m_InventoryActionsCallbackInterface.OnInventory5;
+                @Inventory5.canceled -= m_Wrapper.m_InventoryActionsCallbackInterface.OnInventory5;
+            }
+            m_Wrapper.m_InventoryActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Inventory1.started += instance.OnInventory1;
+                @Inventory1.performed += instance.OnInventory1;
+                @Inventory1.canceled += instance.OnInventory1;
+                @Inventory2.started += instance.OnInventory2;
+                @Inventory2.performed += instance.OnInventory2;
+                @Inventory2.canceled += instance.OnInventory2;
+                @Inventory3.started += instance.OnInventory3;
+                @Inventory3.performed += instance.OnInventory3;
+                @Inventory3.canceled += instance.OnInventory3;
+                @Inventory4.started += instance.OnInventory4;
+                @Inventory4.performed += instance.OnInventory4;
+                @Inventory4.canceled += instance.OnInventory4;
+                @Inventory5.started += instance.OnInventory5;
+                @Inventory5.performed += instance.OnInventory5;
+                @Inventory5.canceled += instance.OnInventory5;
+            }
+        }
+    }
+    public InventoryActions @Inventory => new InventoryActions(this);
     public interface IMovementActions
     {
         void OnForward(InputAction.CallbackContext context);
@@ -448,5 +628,13 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
     public interface IInteractionActions
     {
         void OnInteract(InputAction.CallbackContext context);
+    }
+    public interface IInventoryActions
+    {
+        void OnInventory1(InputAction.CallbackContext context);
+        void OnInventory2(InputAction.CallbackContext context);
+        void OnInventory3(InputAction.CallbackContext context);
+        void OnInventory4(InputAction.CallbackContext context);
+        void OnInventory5(InputAction.CallbackContext context);
     }
 }

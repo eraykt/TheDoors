@@ -5,7 +5,14 @@ public class InventoryItemData : ScriptableObject
 {
     public string id;
     public string itemName;
-    public bool isStackable;
     public Sprite icon;
+    public bool hasDurability;
+    public int maxDurability;
     public GameObject prefab;
+
+    private void OnValidate()
+    {
+        if (!hasDurability && maxDurability > 0)
+            maxDurability = 0;
+    }
 }

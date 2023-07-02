@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   itemName: Deneme
-  isStackable: 0
   icon: {fileID: 0}
+  hasDurability: 0
+  maxDurability: 0
   prefab: {fileID: 4528086561601564179, guid: 522385fb3221f0b44b583c3741cba5f0, type: 3}
