@@ -11,7 +11,7 @@ public class ItemCanvas : MonoBehaviour
     {
         SetActiveCanvas(false);
     }
-
+    
     public void SetActiveCanvas(bool active)
     {
         canvas.gameObject.SetActive(active);

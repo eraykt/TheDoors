@@ -7,18 +7,18 @@ public class ItemObject : MonoBehaviour, IInteractable, ICollectable
     private ItemOutline outline;
     private ItemCanvas canvas;
 
-    private void Awake()
+    protected void Awake()
     {
         outline = GetComponent<ItemOutline>();
         canvas = GetComponent<ItemCanvas>();
     }
 
-    private void Start()
+    protected void Start()
     {
         SetItemName();
     }
 
-    public void Collect()
+    public virtual void Collect()
     {
         InventorySystem.Instance.Add(data);
         Destroy(gameObject);

@@ -72,11 +72,13 @@ public class InventoryBarUi : MonoBehaviour
 
     private void SelectSlot(int index)
     {
+        if (index >= slots.Count) return;
+
         if (selectedSlot >= 0 && selectedSlot < slots.Count)
         {
             slots[selectedSlot].Deselect();
         }
-
+        
         slots[index].Select();
         selectedSlot = index;
     }
