@@ -456,6 +456,7 @@ MonoBehaviour:
   itemName: {fileID: 6092343118030340288}
   durability: {fileID: 6984934484499921296}
   frame: {fileID: 3453778842219431138}
+  sliderFill: {fileID: 1386631157944881707}
 --- !u!1 &8385367974640800916
 GameObject:
   m_ObjectHideFlags: 0

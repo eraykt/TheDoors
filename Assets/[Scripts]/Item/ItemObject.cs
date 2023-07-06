@@ -7,6 +7,8 @@ public class ItemObject : MonoBehaviour, IInteractable, ICollectable
     private ItemOutline outline;
     private ItemCanvas canvas;
 
+    public GameObject handObject;
+
     protected void Awake()
     {
         outline = GetComponent<ItemOutline>();
@@ -20,7 +22,9 @@ public class ItemObject : MonoBehaviour, IInteractable, ICollectable
 
     public virtual void Collect()
     {
-        InventorySystem.Instance.Add(data);
+        var item = Instantiate(handObject, InventorySystem.Instance.HandTransform).GetComponent<HandItem>();
+        item.SetItem(data);
+        InventorySystem.Instance.Add(data, item);
         Destroy(gameObject);
     }
 

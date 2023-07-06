@@ -2,7 +2,8 @@ public class Battery : ItemObject
 {
     public override void Collect()
     {
-        // eldeki fenerin durabilitysini arttirir.
+        var flashlight = InventorySystem.Instance.inventory.Find(i => i.data.id == 1.ToString()).item;
+        flashlight.AddDurability();
         Destroy(gameObject);
     }
 }

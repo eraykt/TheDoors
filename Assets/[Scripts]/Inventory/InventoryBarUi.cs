@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class InventoryBarUi : MonoBehaviour
@@ -29,27 +30,17 @@ public class InventoryBarUi : MonoBehaviour
 
     private void InventoryUpdate()
     {
-        ClearInventory();
         DrawInventory();
-    }
-
-    private void ClearInventory()
-    {
-        foreach (var slot in slots)
-        {
-            Destroy(slot.gameObject);
-        }
-
-        slots.Clear();
+        SetSlotIds();
     }
 
     private void DrawInventory()
     {
         var inventory = InventorySystem.Instance.inventory;
 
-        for (int i = 0; i < inventory.Count; i++)
+        foreach (var item in inventory)
         {
-            AddInventorySlot(inventory[i], i + 1);
+            AddInventorySlot(item);
         }
 
         if (selectedSlot != -1 && selectedSlot < slots.Count)
@@ -62,12 +53,25 @@ public class InventoryBarUi : MonoBehaviour
         }
     }
 
-    private void AddInventorySlot(InventoryItem item, int index)
+    private void SetSlotIds()
     {
+        for (int i = 0; i < slots.Count; i++)
+        {
+            slots[i].SetId(i + 1);
+        }
+    }
+
+    private void AddInventorySlot(InventoryItem item)
+    {
+        var addedItem = InventorySystem.Instance.Get(item);
+        if(addedItem == null) return;
+        if (addedItem.Slot == null) return;
+
         var slot = Instantiate(slotPrefab, transform);
-        slot.Set(item, index);
+        slot.Set(item);
 
         slots.Add(slot);
+        InventorySystem.Instance.UpdateInventory(item, slot);
     }
 
     private void SelectSlot(int index)
@@ -78,7 +82,7 @@ public class InventoryBarUi : MonoBehaviour
         {
             slots[selectedSlot].Deselect();
         }
-        
+
         slots[index].Select();
         selectedSlot = index;
     }
