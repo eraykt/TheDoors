@@ -10,7 +10,7 @@ public class InventorySlotUi : MonoBehaviour
     [SerializeField] private Slider durability;
     [SerializeField] private Image frame;
     [SerializeField] private Image sliderFill;
-    private HandItem item;
+    public HandItem Item { get; private set; }
 
     private Gradient gradient;
 
@@ -20,7 +20,7 @@ public class InventorySlotUi : MonoBehaviour
         itemName.SetText(item.itemName);
         durability.gameObject.SetActive(item.data.hasDurability);
         SetGradient();
-        this.item = item.item;
+        Item = item.item;
     }
 
     public void SetId(int index)
@@ -31,13 +31,15 @@ public class InventorySlotUi : MonoBehaviour
     public void Select()
     {
         frame.gameObject.SetActive(true);
-        item.Selected = true;
+        
+        Item.Selected = true;
+        Item.SetItemGfx(true);
     }
 
     public void Deselect()
     {
         frame.gameObject.SetActive(false);
-        item.Selected = false;
+        Item.DeSelect(false);
     }
 
     private void SetGradient()

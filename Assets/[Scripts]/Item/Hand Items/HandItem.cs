@@ -42,6 +42,8 @@ public abstract class HandItem : MonoBehaviour
             OnItemBreak();
         }
     }
+    
+    public abstract void DeSelect(bool value);
 
     protected virtual void OnItemBreak()
     {
@@ -64,6 +66,11 @@ public abstract class HandItem : MonoBehaviour
     public void SetSlot(InventorySlotUi slot)
     {
         this.Slot = slot;
+    }
+
+    public void SetItemGfx(bool value)
+    {
+        transform.GetChild(0).gameObject.SetActive(value);
     }
 
     private void OnEnable()

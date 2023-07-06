@@ -24,6 +24,7 @@ public class ItemObject : MonoBehaviour, IInteractable, ICollectable
     {
         var item = Instantiate(handObject, InventorySystem.Instance.HandTransform).GetComponent<HandItem>();
         item.SetItem(data);
+        item.SetItemGfx(false);
         InventorySystem.Instance.Add(data, item);
         Destroy(gameObject);
     }

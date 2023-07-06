@@ -9,11 +9,7 @@ public class InventorySystem : Singleton<InventorySystem>
 
     [SerializeField] private Transform handTransform;
     public Transform HandTransform => handTransform;
-
-    protected override void Awake()
-    {
-        base.Awake();
-    }
+    
 
     public HandItem Get(InventoryItem refItem)
     {
