@@ -17,5 +17,5 @@ MonoBehaviour:
   icon: {fileID: 0}
   hasDurability: 1
   maxDurability: 100
-  durabilityMultiplier: 1
+  durabilityMultiplier: 5
   prefab: {fileID: 0}
