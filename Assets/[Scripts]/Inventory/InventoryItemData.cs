@@ -7,7 +7,8 @@ public class InventoryItemData : ScriptableObject
     public string itemName;
     public Sprite icon;
     public bool hasDurability;
-    public int maxDurability;
+    public float maxDurability;
+    public float durabilityMultiplier = 1; 
     public GameObject prefab;
 
     private void OnValidate()

@@ -1,36 +1,50 @@
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 public class InventorySystem : Singleton<InventorySystem>
 {
     public List<InventoryItem> inventory;
     public System.Action OnInventoryUpdated;
 
-    protected override void Awake()
-    {
-        base.Awake();
+    [SerializeField] private Transform handTransform;
+    public Transform HandTransform => handTransform;
+    
 
-        inventory = new List<InventoryItem>();
+    public HandItem Get(InventoryItem refItem)
+    {
+        return inventory.Find(i => i.item == refItem.item).item;
     }
 
-    public InventoryItem Get(InventoryItemData referenceData)
+    public InventoryItem Get(HandItem refItem)
     {
-        var item = inventory.Find(value => value.data == referenceData);
-        return item;
+        return inventory.Find(i => i.item == refItem);
     }
 
-    public void Add(InventoryItemData referenceData)
+    public void Add(InventoryItemData referenceData, HandItem onHand)
     {
-        var newItem = new InventoryItem(referenceData);
+        var newItem = new InventoryItem(referenceData)
+        {
+            item = onHand
+        };
         inventory.Add(newItem);
         OnInventoryUpdated?.Invoke();
     }
 
-    public void Remove(InventoryItemData referenceData)
+    public void UpdateInventory(InventoryItem referenceData, InventorySlotUi slot)
     {
-        var item = Get(referenceData);
+        referenceData.item.SetSlot(slot);
+        // OnInventoryUpdated?.Invoke();
+    }
 
+    public void Remove(HandItem refItem)
+    {
+        var item = Get(refItem);
+        
         if (item != null)
+        {
             inventory.Remove(item);
+        }
 
         OnInventoryUpdated?.Invoke();
     }
@@ -41,6 +55,7 @@ public class InventoryItem
 {
     public string itemName;
     public InventoryItemData data;
+    public HandItem item;
 
     public InventoryItem(InventoryItemData data)
     {

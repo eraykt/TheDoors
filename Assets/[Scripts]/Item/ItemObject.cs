@@ -7,20 +7,25 @@ public class ItemObject : MonoBehaviour, IInteractable, ICollectable
     private ItemOutline outline;
     private ItemCanvas canvas;
 
-    private void Awake()
+    public GameObject handObject;
+
+    protected void Awake()
     {
         outline = GetComponent<ItemOutline>();
         canvas = GetComponent<ItemCanvas>();
     }
 
-    private void Start()
+    protected void Start()
     {
         SetItemName();
     }
 
-    public void Collect()
+    public virtual void Collect()
     {
-        InventorySystem.Instance.Add(data);
+        var item = Instantiate(handObject, InventorySystem.Instance.HandTransform).GetComponent<HandItem>();
+        item.SetItem(data);
+        item.SetItemGfx(false);
+        InventorySystem.Instance.Add(data, item);
         Destroy(gameObject);
     }
 

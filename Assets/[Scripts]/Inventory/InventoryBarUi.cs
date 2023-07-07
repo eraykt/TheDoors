@@ -29,49 +29,74 @@ public class InventoryBarUi : MonoBehaviour
 
     private void InventoryUpdate()
     {
-        ClearInventory();
         DrawInventory();
-    }
-
-    private void ClearInventory()
-    {
-        foreach (var slot in slots)
-        {
-            Destroy(slot.gameObject);
-        }
-
-        slots.Clear();
+        SetSlotIds();
     }
 
     private void DrawInventory()
     {
         var inventory = InventorySystem.Instance.inventory;
 
-        for (int i = 0; i < inventory.Count; i++)
-        {
-            AddInventorySlot(inventory[i], i + 1);
-        }
+        foreach (var item in inventory)
+            AddInventorySlot(item);
 
-        if (selectedSlot != -1 && selectedSlot < slots.Count)
-        {
-            SelectSlot(selectedSlot);
-        }
-        else if (slots.Count > 0)
-        {
+        RemoveInventorySlot();
+
+
+        if (selectedSlot == -1)
             SelectSlot(0);
+    }
+
+    private void SetSlotIds()
+    {
+        for (int i = 0; i < slots.Count; i++)
+        {
+            slots[i].SetId(i + 1);
         }
     }
 
-    private void AddInventorySlot(InventoryItem item, int index)
+    private void AddInventorySlot(InventoryItem item)
     {
+        var addedItem = InventorySystem.Instance.Get(item);
+        if (addedItem == null) return;
+        if (addedItem.Slot != null) return;
+
         var slot = Instantiate(slotPrefab, transform);
-        slot.Set(item, index);
+        slot.Set(item);
 
         slots.Add(slot);
+        InventorySystem.Instance.UpdateInventory(item, slot);
+    }
+
+    private void RemoveInventorySlot()
+    {
+        var slotList = new List<InventorySlotUi>();
+
+        foreach (var slot in slots)
+            slotList.Add(slot);
+
+        foreach (var slot in InventorySystem.Instance.inventory)
+            if (slotList.Contains(slot.item.Slot))
+                slotList.Remove(slot.item.Slot);
+
+        foreach (var slot in slotList)
+        {
+            slots.Remove(slot);
+            Destroy(slot.gameObject);
+        }
     }
 
     private void SelectSlot(int index)
     {
+        if (index >= slots.Count) return;
+
+        if (selectedSlot == index)
+        {
+            slots[selectedSlot].Deselect();
+            selectedSlot = -2;
+            return;
+        }
+
         if (selectedSlot >= 0 && selectedSlot < slots.Count)
         {
             slots[selectedSlot].Deselect();
