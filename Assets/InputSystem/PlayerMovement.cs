@@ -9,10 +9,12 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 10f;
     public float jumpForce = 200f;
     private bool _isGrounded;
+    private Animator _animator;
 
     private void Awake()
     {
         inputManager.inputMaster.Movement.Jump.started += _ => Jump();
+        _animator = this.GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -44,7 +46,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if(_isGrounded)
         {
+            _animator.SetTrigger("isJump");
             rb.AddForce(Vector3.up * jumpForce);
+            
         }
     }
 }
