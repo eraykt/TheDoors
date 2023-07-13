@@ -22,5 +22,6 @@ public class AnimationControl : MonoBehaviour
     void Update()
     {
         animator.SetFloat("Speedd", rbody.velocity.magnitude / maxSpeed);
+        //Debug.Log(animator.GetFloat("Speedd"));        
     }
 }

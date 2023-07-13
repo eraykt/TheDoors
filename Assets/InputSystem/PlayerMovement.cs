@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public InputManager inputManager;   
+    public InputManager inputManager;
     public Rigidbody rb;
     public float speed = 10f;
     public float jumpForce = 200f;
     private bool _isGrounded;
     private Animator _animator;
-
+    [SerializeField] private AudioSource _jumpSound;
+    private AudioSource _audioSource;
     private void Awake()
     {
         inputManager.inputMaster.Movement.Jump.started += _ => Jump();
         _animator = this.GetComponent<Animator>();
+        _audioSource = this.GetComponent<AudioSource>();
     }
 
     void FixedUpdate()
@@ -26,6 +28,22 @@ public class PlayerMovement : MonoBehaviour
             y:inputManager.inputMaster.Movement.Crouch.ReadValue<float>() == 0 ? .6f: 0.4f, z:.6f);    
 
         rb.velocity =  new Vector3 (move.x, rb.velocity.y, move.z);
+        if (forward != 0 || right != 0)
+        {
+            if (_isGrounded)
+            {
+                _audioSource.mute = false;
+            }
+            else
+            {
+                _audioSource.mute = true;
+            }
+        }
+        else
+        {
+            _audioSource.mute = true;
+            Debug.Log("artýk");
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -48,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _animator.SetTrigger("isJump");
             rb.AddForce(Vector3.up * jumpForce);
-            
+            _jumpSound.Play();
         }
     }
 }
