@@ -22,8 +22,8 @@ public class PlayerMovement : MonoBehaviour
         float forward = inputManager.inputMaster.Movement.Forward.ReadValue<float>() * speed;
         float right = inputManager.inputMaster.Movement.Right.ReadValue<float>() * speed;
         Vector3 move = transform.right * right + transform.forward * forward;
-        transform.localScale = new Vector3(x:1,
-            y:inputManager.inputMaster.Movement.Crouch.ReadValue<float>() == 0 ? 1f: 0.72618f, z:1);    
+        transform.localScale = new Vector3(x:.6f,
+            y:inputManager.inputMaster.Movement.Crouch.ReadValue<float>() == 0 ? .6f: 0.4f, z:.6f);    
 
         rb.velocity =  new Vector3 (move.x, rb.velocity.y, move.z);
     }
